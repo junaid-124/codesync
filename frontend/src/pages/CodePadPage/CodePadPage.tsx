@@ -16,6 +16,13 @@ const languages = [
   { name: 'PHP', value: 'php', version: '8.0.0', apiId: 68, defaultCode: `<?php\n\necho "Hello, World!";\n` },
   { name: 'Ruby', value: 'ruby', version: '3.0.1', apiId: 72, defaultCode: `puts "Hello, World!"` },
   { name: 'Swift', value: 'swift', version: '5.3.1', apiId: 83, defaultCode: `print("Hello, World!")` },
+  { 
+    name: 'C', 
+    value: 'c', // Monaco editor language
+    version: 'GCC 9.2.0', 
+    apiId: 50, // The Judge0 API ID
+    defaultCode: `#include <stdio.h>\n\nint main() {\n    printf("Hello, World!");\n    return 0;\n}` 
+  },
 ];
 // --- END OF UPDATED ARRAY ---
 
