@@ -86,7 +86,7 @@ const ContestsPage = () => {
   useEffect(() => {
     const fetchContests = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/contests');
+        const response = await fetch('http://localhost:8080/api/contests');
         if (!response.ok) throw new Error(`Failed to fetch: ${response.statusText}`);
         const data = await response.json();
 
