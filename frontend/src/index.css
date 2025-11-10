@@ -1,0 +1,14 @@
+/* You can find a good font on Google Fonts, like 'Inter' or 'Poppins' */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #0B0B0F; /* Dark background */
+  color: #E0E0E0; /* Off-white text */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* --- IMPORTANT: Add padding to the right for the fixed bar --- */
+  padding-right: 4px; /* Matches the width of your fixed bar */
+  overflow-x: hidden; /* Prevent horizontal scrollbar if padding causes issues */
+}

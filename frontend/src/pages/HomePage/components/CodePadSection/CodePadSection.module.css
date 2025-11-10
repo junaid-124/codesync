@@ -1,0 +1,125 @@
+.sectionContainer {
+  padding: 4rem 0;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* --- UPDATED CODE EDITOR STYLES --- */
+
+/* New outer frame */
+.editorFrame {
+  background-color: #2D2D33; /* Dark gray for the frame */
+  border-radius: 16px;
+  padding: 12px; /* This padding creates the frame's thickness */
+  border: 1px solid #444444;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Inner code area */
+.codeEditor {
+  background-color: #1E1E1E; /* Even darker for the code background */
+  border-radius: 8px; /* Inner corners are slightly less rounded */
+  padding: 0;
+  border: none;
+}
+
+.editorHeader {
+  display: flex;
+  gap: 0.6rem;
+  padding: 1rem;
+  border-bottom: 1px solid #2D2D33;
+  margin-bottom: 0;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+.red { background-color: #FF5F56; }
+.yellow { background-color: #FFBD2E; }
+.green { background-color: #27C93F; }
+
+.codeBlock {
+  margin: 0;
+  padding: 1.2rem;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #D4D4D4;
+}
+
+/* UPDATED SYNTAX HIGHLIGHTING */
+.preprocessor { color: #C586C0; } /* Pink/Magenta */
+.keyword { color: #D4D4D4; }      /* Default text color */
+.type { color: #569CD6; }         /* Blue */
+.function { color: #DCDCAA; }     /* Yellow */
+.string { color: #6A9955; }       /* Green */
+
+
+/* --- RIGHT COLUMN STYLES --- */
+.rightColumn {
+  /* No changes needed here */
+}
+.featureTitleContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.featureTitleContainer h3 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 0;
+}
+
+.featureIcon {
+  background: linear-gradient(135deg, #3B82F6, #1EBBFF);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.featureDescription {
+  color: #a0a0a0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 450px;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin-top: 2rem;
+}
+
+.featureList li {
+  color: #E0E0E0;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.featureList li::before {
+  content: '•';
+  color: #3B82F6;
+  font-size: 1.5rem;
+  position: absolute;
+  left: 0;
+  top: -4px;
+}

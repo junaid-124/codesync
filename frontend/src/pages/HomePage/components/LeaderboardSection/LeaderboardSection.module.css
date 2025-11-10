@@ -1,0 +1,152 @@
+/* This wrapper creates the visual separation with a different background */
+sectionWrapper {
+  /* The different background-color has been removed */
+  padding: 6rem 0; /* Keeps vertical space for the content inside */
+  margin-top: 4rem; /* The "margin" you asked for to create space */
+  
+  /* This is the subtle top border for separation */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  
+}
+/* This container keeps the content aligned with the rest of the page */
+.sectionContainer {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 2rem;
+ 
+}
+
+.mainTitle {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.gradientText {
+  background: linear-gradient(90deg, #8B5CF6, #3B82F6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subTitle {
+  text-align: center;
+  color: #a0a0a0;
+  font-size: 1.1rem;
+  margin-bottom: 4rem;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.featureTitleContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.featureTitleContainer h3 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 0;
+}
+
+.featureIcon {
+  background: linear-gradient(135deg, #8B5CF6, #3B82F6);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+}
+
+.featureDescription {
+  color: #a0a0a0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin-top: 2rem;
+}
+
+.featureList li {
+  color: #E0E0E0;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.featureList li::before {
+  content: '•';
+  color: #3B82F6;
+  font-size: 1.5rem;
+  position: absolute;
+  left: 0;
+  top: -4px;
+}
+
+.leaderboardCard {
+  background-color: #0B0B0F; /* Match main page background */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.userRow {
+  display: flex;
+  align-items: center;
+  background-color: #1A1A22;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.rank {
+  background-color: #3B82F6;
+  color: white;
+  font-weight: 700;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.userName {
+  color: #fff;
+  font-weight: 600;
+}
+
+.userPoints {
+  color: #a0a0a0;
+  font-size: 0.9rem;
+}
+
+.platformScores {
+  margin-left: auto;
+  display: flex;
+  gap: 1.5rem;
+  color: #a0a0a0;
+  font-weight: 500;
+}

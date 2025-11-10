@@ -1,0 +1,153 @@
+.sectionContainer {
+  padding: 4rem 0;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  max-width: 1125px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* --- Left Column Styles --- */
+.featureTitleContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.featureTitleContainer h3 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 0;
+}
+
+.featureIcon {
+  background: linear-gradient(135deg, #8B5CF6, #6366F1);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.featureDescription {
+  color: #a0a0a0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 450px;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin-top: 2rem;
+}
+
+.featureList li {
+  color: #E0E0E0;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.featureList li::before {
+  content: '•';
+  color: #3B82F6;
+  font-size: 1.5rem;
+  position: absolute;
+  left: 0;
+  top: -4px;
+}
+
+/* --- Right Column Styles --- */
+.coursesContainer {
+  background-color: #1A1A22;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.courseCard {
+  padding: 1.5rem 0; 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.courseCard:last-child {
+  border-bottom: none;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.courseTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.difficultyTag {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer; /* Add a pointer to indicate it's interactive */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* --- NEW HOVER EFFECTS --- */
+.difficultyTag:hover {
+  transform: translateY(-2px);
+}
+.beginner:hover {
+  box-shadow: 0 4px 15px rgba(22, 163, 74, 0.5);
+}
+.intermediate:hover {
+  box-shadow: 0 4px 15px rgba(217, 119, 6, 0.5);
+}
+
+
+.beginner {
+  background-color: #16A34A;
+  color: #DCFCE7;
+  border: 1px solid #22C55E;
+}
+
+.intermediate {
+  background-color: #D97706;
+  color: #FEF3C7;
+  border: 1px solid #F59E0B;
+}
+
+.courseDescription {
+  color: #a0a0a0;
+  margin: 0 0 1rem 0;
+}
+
+.progressBar {
+  width: 100%;
+  background-color: #374151;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: #0EA5E9;
+  border-radius: 4px;
+}

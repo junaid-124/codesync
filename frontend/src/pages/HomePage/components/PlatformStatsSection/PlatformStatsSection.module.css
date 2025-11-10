@@ -1,0 +1,107 @@
+.sectionContainer {
+  padding: 6rem 0;
+}
+
+.titleWrapper {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.mainTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: #fff;
+}
+
+.subTitle {
+  font-size: 1.1rem;
+  color: #a0a0a0;
+  margin: 0;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* --- UPDATED CARD STYLES --- */
+.statCard {
+  background-color: #1A1A22;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem; /* Smaller, square padding */
+  text-align: center; /* Left-aligned text */
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-5px);
+  /* --- UPDATE THESE LINES --- */
+  /* Use the variable for the border color */
+  border-color: var(--platform-color); 
+  /* Use the variable for a matching glow effect */
+  box-shadow: 0 0 20px var(--platform-color);
+}
+
+.platformName {
+  font-size: 1.1rem; /* Reduced */
+  font-weight: 600;
+  margin: 0 0 0.75rem 0; /* Reduced */
+}
+
+.userCount {
+  font-size: 2rem; /* Reduced */
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+
+.userLabel {
+  font-size: 0.8rem; /* Reduced */
+  color: #a0a0a0;
+}
+
+
+/* --- LIVE STATUS & ANIMATION --- */
+.liveStatus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 3rem;
+  color: #a0a0a0;
+  font-size: 0.9rem;
+}
+
+.liveDot {
+  width: 8px;
+  height: 8px;
+  background-color: #22C55E;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 992px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+}
