@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Editor from '@monaco-editor/react';
 import styles from './CodePadPage.module.css';
-import { RiCodeLine, RiPlayLine, RiUpload2Line, RiShareLine, RiTerminalBoxLine, RiFileList3Line } from 'react-icons/ri';
+// --- CHANGE: Removed RiUpload2Line and RiShareLine ---
+import { RiCodeLine, RiPlayLine, RiTerminalBoxLine, RiFileList3Line } from 'react-icons/ri';
 
 // --- UPDATED LANGUAGES ARRAY ---
 // We add 'apiId' for Judge0 and 'value' for the Monaco Editor
@@ -82,12 +83,12 @@ const CodePadPage = () => {
           setError(fullOutput);
         }
         // Handle "message" (e.g., Time Limit Exceeded)
-         else if (result.message) {
+          else if (result.message) {
           fullOutput += `[Execution Message]:\n${result.message}\n`;
           setError(fullOutput);
         }
         // Handle successful output
-         else {
+          else {
           fullOutput = result.stdout || '';
           setOutput(fullOutput);
         }
@@ -118,7 +119,16 @@ const CodePadPage = () => {
               <RiCodeLine />
               <span>Code Editor</span>
             </div>
+            {/* --- CHANGE: Run button moved here, other icons removed --- */}
             <div className={styles.headerRight}>
+              <button 
+                onClick={handleRunCode} 
+                disabled={isLoading} 
+                className={styles.iconButton}
+                title={isLoading ? "Running..." : "Run Code"}
+              >
+                <RiPlayLine />
+              </button>
               <select value={language.value} onChange={handleLanguageChange} className={styles.languageSelect}>
                 {languages.map(lang => (
                   <option key={lang.value} value={lang.value}>{lang.name}</option>
@@ -126,6 +136,7 @@ const CodePadPage = () => {
               </select>
               <span className={styles.versionTag}>{language.version}</span>
             </div>
+            {/* --- END OF CHANGE --- */}
           </div>
           <div className={styles.editorContainer}>
             <Editor
@@ -137,15 +148,7 @@ const CodePadPage = () => {
               options={{ fontSize: 16, minimap: { enabled: false } }}
             />
           </div>
-          <div className={styles.panelFooter}>
-            <button onClick={handleRunCode} disabled={isLoading} className={styles.runButton}>
-              <RiPlayLine /> {isLoading ? 'Running...' : 'Run Code'}
-            </button>
-            <div className={styles.footerActions}>
-              <button className={styles.iconButton}><RiUpload2Line /></button>
-              <button className={styles.iconButton}><RiShareLine /></button>
-            </div>
-          </div>
+          {/* --- CHANGE: The entire panelFooter div has been removed --- */}
         </div>
 
         <div className={styles.ioPanel}>
