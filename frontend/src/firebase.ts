@@ -2,15 +2,15 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-
-// PASTE YOUR FIREBASE CONFIG OBJECT FROM THE CONSOLE HERE
+// Your web app's Firebase configuration
+// Safely read from environment variables
 const firebaseConfig = {
-  apiKey: "AIzaSyAkqjJXV7QWxZQLWEiTYRiXDBsb4sTqKPM",
-  authDomain: "codesync-b3e17.firebaseapp.com",
-  projectId: "codesync-b3e17",
-  storageBucket: "codesync-b3e17.firebasestorage.app",
-  messagingSenderId: "841727589093",
-  appId: "1:841727589093:web:c31f0d32ab2d4d30f3720c"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 // Initialize Firebase
