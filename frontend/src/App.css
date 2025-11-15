@@ -1,0 +1,25 @@
+.container {
+  max-width: 1200px; /* Original max width */
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  /* Adjust max-width to account for the fixed bar. */
+  /* If the fixed bar is outside the container, this adjustment might not be needed. */
+  /* If the issue persists, try reducing this max-width slightly or adjusting padding-right. */
+  /* For now, let's just make sure the padding is correct. */
+}
+main.full-width-main {
+  /* This allows the main content to grow outside the centered container */
+  width: 100%;
+}
+/* The vertical accent bar on the right */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100vh;
+  background: linear-gradient(180deg, #3B82F6, #8B5CF6, #EC4899);
+  z-index: 100;
+}

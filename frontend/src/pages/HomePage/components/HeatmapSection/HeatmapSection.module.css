@@ -1,0 +1,116 @@
+.sectionContainer {
+  padding: 3rem 0;
+  
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 0.8fr 0.8fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+
+/* --- FULLY UPDATED & RESIZED HEATMAP STYLES --- */
+.heatmapContainer {
+  background-color: #1A1A22;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.25rem; /* Reduced padding */
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.heatmapHeader {
+  color: #a0a0a0;
+  font-size: 0.8rem; /* Reduced font size */
+  margin-bottom: 0.8rem; /* Reduced margin */
+}
+
+.heatmapGrid {
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  gap: 5px; /* Reduced gap */
+  margin-bottom: 0.8rem; /* Reduced margin */
+}
+
+.heatmapDot {
+  width: 10px;  /* Smaller dots */
+  height: 10px; /* Smaller dots */
+  border-radius: 50%;
+}
+
+/* Final, correct color palette */
+.level0 { background-color: #2D333B; }
+.level1 { background-color: #004466; }
+.level2 { background-color: #0077B3; }
+.level3 { background-color: #00A9FF; }
+
+
+.heatmapFooter {
+  display: flex;
+  justify-content: space-between;
+  color: #a0a0a0;
+  font-size: 0.8rem; /* Reduced font size */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 0.8rem; /* Reduced padding */
+}
+
+
+/* --- RIGHT COLUMN STYLES (UNCHANGED) --- */
+.featureTitleContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.featureTitleContainer h3 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 0;
+}
+
+.featureIcon {
+  background: linear-gradient(135deg, #6366F1, #3B82F6);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.featureDescription {
+  color: #a0a0a0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 450px;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin-top: 2rem;
+}
+
+.featureList li {
+  color: #E0E0E0;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.featureList li::before {
+  content: '•';
+  color: #3B82F6;
+  font-size: 1.5rem;
+  position: absolute;
+  left: 0;
+  top: -4px;
+}

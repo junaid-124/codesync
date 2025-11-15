@@ -1,0 +1,13 @@
+.appLayout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #0d1117;
+}
+
+.content {
+  /* This creates a centered container for your page content */
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2.5rem 3rem;
+}

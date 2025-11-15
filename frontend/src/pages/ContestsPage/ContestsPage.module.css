@@ -1,0 +1,98 @@
+.container {
+  max-width: 1100px; /* Widen for the calendar */
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  color: hsl(38, 67%, 57%); /* Darker title text */
+  margin: 0;
+}
+
+.filterContainer {
+  text-align: right;
+}
+
+.filterContainer label {
+  margin-right: 0.5rem;
+  font-weight: 600;
+}
+
+.filterContainer select {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+/* THIS IS THE MOST IMPORTANT PART:
+  The calendar component MUST have a defined height.
+*/
+.calendarContainer {
+  height: 75vh; /* 75% of the viewport height */
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+}
+
+.loading, .error {
+  font-style: italic;
+  color: #777;
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 2rem;
+}
+
+.error {
+  color: #D8000C;
+}
+
+/* --- Event Color Styling --- */
+/* This is the base style for all events */
+.event {
+  border: none !important;
+  color: #fff !important;
+  border-radius: 4px !important;
+  padding: 2px 5px !important;
+  font-size: 0.8rem !important;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+.event:hover {
+  opacity: 1;
+}
+
+/* We add specific background colors based on platform.
+  These class names match the 'platform' string, 
+  made safe for CSS (e.g., "Code 360" -> "code360").
+*/
+.atcoder {
+  background-color: #2c3e50 !important;
+}
+.codechef {
+  background-color: #D2691E !important;
+}
+.leetcode {
+  background-color: #ffa116 !important;
+}
+.codeforces {
+  background-color: #c0392b !important;
+}
+.hackerrank {
+  background-color: #27ae60 !important;
+}
+.code360 {
+  background-color: #8e44ad !important;
+}
+.defaultEvent {
+  background-color: #2980b9 !important;
+}

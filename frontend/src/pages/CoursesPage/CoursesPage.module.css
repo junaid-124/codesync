@@ -1,0 +1,92 @@
+.pageContainer {
+  color: #c9d1d9;
+}
+.header {
+  margin-bottom: 2rem;
+}
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.5rem 0;
+}
+.header p {
+  font-size: 1.1rem;
+  color: #8b949e;
+  margin: 0;
+}
+.controlsBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  gap: 1rem;
+}
+.searchInput {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  flex-grow: 1;
+}
+.searchInput svg { color: #8b949e; }
+.searchInput input { background: none; border: none; color: #c9d1d9; font-size: 1rem; width: 100%; }
+.searchInput input:focus { outline: none; }
+.filterSelect {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+}
+.coursesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.courseCard {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.courseCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+.cardContent {
+  padding: 1.5rem;
+  flex-grow: 1;
+}
+.difficultyTag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+.beginner { background-color: #16A34A; }
+.intermediate { background-color: #D97706; }
+.advanced { background-color: #DC2626; }
+.cardContent h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 0.5rem 0;
+}
+.cardContent p { color: #8b949e; line-height: 1.6; margin: 0; }
+.cardFooter { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; border-top: 1px solid #30363d; }
+.cardFooter span { color: #8b949e; font-size: 0.9rem; }
+.ctaButton { background-color: #007BFF; color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: background-color 0.2s ease; }
+.ctaButton:hover { background-color: #0056b3; }
+.noResults { grid-column: 1 / -1; text-align: center; padding: 4rem; color: #8b949e; background-color: #161b22; border-radius: 12px; }
+@media (max-width: 992px) { .coursesGrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) { .coursesGrid { grid-template-columns: 1fr; } .controlsBar { flex-direction: column; align-items: stretch; } }

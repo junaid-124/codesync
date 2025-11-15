@@ -1,0 +1,256 @@
+.authContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+/* --- Left Panel (No changes needed, keeping it intact) --- */
+.leftPanel {
+  background-color: #0B0B0F;
+  color: #fff;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.carouselWrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.goBack {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #fff;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.backIcon {
+  background-color: #007BFF;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease;
+  background-image: linear-gradient(180deg, #F97316, #F59E0B);
+  color: #fff;
+}
+
+.backText {
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
+
+.goBack:hover .backIcon {
+  background-color: #3399FF;
+  background-color: #444; /* Brighter gray on hover */
+  border-color: #666;
+  box-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
+}
+
+.goBack:hover .backText {
+  opacity: 0.8;
+}
+
+.illustrationContainer {
+  text-align: center;
+  width: 50%; /* Ensure illustration uses full width */
+}
+
+.illustration {
+  max-width: 80%;
+  height: auto;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.carouselDots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #444;
+  transition: background-color 0.3s ease;
+}
+
+.activeDot {
+  background-color: #fff;
+}
+
+.panelText {
+  text-align: center;
+  animation: fadeIn 0.8s ease-in-out;
+  margin-top: 2rem;
+  max-width: 80%;
+}
+
+.panelText h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.panelText p {
+  color: #a0a0a0;
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* --- ENHANCED RIGHT PANEL STYLES --- */
+.rightPanel {
+  /* Subtle radial gradient for depth */
+  background: radial-gradient(circle at top left, #1a202c 0%, #0d1117 70%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem; /* Increased vertical padding */
+  text-align: left; /* Ensure all text aligns left */
+}
+
+.formContent {
+  width: 100%;
+  max-width: 450px; /* Slightly wider content area */
+  padding: 2rem; /* Add internal padding */
+  border-radius: 12px;
+  /* Optional: Frosted glass effect for a modern touch */
+  /* background-color: rgba(255, 255, 255, 0.05); */
+  /* backdrop-filter: blur(5px); */
+  /* border: 1px solid rgba(255, 255, 255, 0.1); */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* Subtle shadow */
+}
+
+.logoContainer {
+  /* Removed flex-box as there's no logo image anymore */
+  margin-bottom: 3rem; /* More space for the main title */
+}
+
+.logoContainer h2 {
+  font-size: 2.5rem; /* Larger and more prominent */
+  font-weight: 800; /* Bolder */
+  letter-spacing: -0.05em; /* Tighter letter spacing */
+  color: #E0E0E0; /* Slightly off-white for main title */
+  line-height: 1.1;
+  text-shadow: 0 0 10px rgba(0,255,255,0.2); /* Subtle glow */
+}
+
+.title {
+  font-size: 1.8rem; /* Larger heading */
+  font-weight: 600; /* Bolder */
+  margin-bottom: 1.5rem; /* More space below heading */
+  line-height: 1.3;
+  color: #f0f0f0; /* Brighter for the heading */
+}
+
+.description {
+  font-size: 1.05rem; /* Fine-tuned size */
+  line-height: 1.8; /* Increased line height for readability */
+  margin-bottom: 2.5rem; /* More space before link/button */
+  color: #b0b0b0; /* Good contrast on dark background */
+  font-weight: 400;
+}
+
+/* New style for the highlighted email text */
+.highlightedEmail {
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle highlight background */
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  color: #fff; /* White text for highlight */
+  font-weight: 500; /* Slightly bolder */
+}
+
+.signInLink {
+  margin-bottom: 3rem; /* More space before the Google button */
+  font-size: 1rem; /* Slightly larger text */
+  color: #c0c0c0; /* Neutral color for "Already have an account?" */
+}
+
+.signInLink a {
+  color: #4dc2f0; /* Vibrant light blue accent color */
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+   color: #F59E0B;
+}
+
+.signInLink a:hover {
+  text-decoration: underline;
+  color: #6ed0f7; /* Slightly brighter on hover */
+  color: #FBBF24; 
+}
+
+.googleButton {
+  background-color: #fff;
+  color: #333;
+  border: none;
+  width: fit-content;
+  padding: 0.8rem 1.8rem; /* Slightly larger button */
+  border-radius: 50px; /* Pill shape */
+  font-size: 1rem; /* Slightly larger font */
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem; /* Increased gap for icon */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* More prominent shadow */
+}
+
+.googleButton:hover {
+  transform: translateY(-3px); /* More pronounced lift */
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+/* --- Responsive & Animation --- */
+@media (max-width: 992px) {
+  .authContainer {
+    grid-template-columns: 1fr;
+  }
+  .leftPanel {
+    display: none;
+  }
+  .rightPanel {
+    padding: 2rem; /* Adjust padding for smaller screens */
+  }
+  .formContent {
+    max-width: 90%; /* Allow content to take more width on small screens */
+    padding: 1.5rem;
+  }
+  .logoContainer h2 {
+    font-size: 2rem; /* Adjust font size for smaller screens */
+  }
+  .title {
+    font-size: 1.6rem;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

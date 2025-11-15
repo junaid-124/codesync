@@ -1,0 +1,113 @@
+.dashboard {
+  color: #c9d1d9;
+}
+
+.loading {
+  text-align: center;
+  padding: 4rem;
+  font-size: 1.2rem;
+  color: #a0a0a0;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.headerText h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 0.5rem 0;
+}
+
+.headerText p {
+  color: #8b949e;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.statCard {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+.cardIcon {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #8b949e;
+}
+
+.cardValue {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.cardLabel {
+  color: #fff;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.cardDesc {
+  font-size: 0.9rem;
+  color: #8b949e;
+  margin: 0 0 1rem 0;
+  min-height: 2.5em;
+}
+
+.cardChange {
+  font-size: 0.9rem;
+  color: #22C55E;
+  font-weight: 500;
+}
+
+.chartsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.chartCard {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.chartCard h3 {
+  margin: 0 0 1.5rem 0;
+  color: #fff;
+  font-weight: 500;
+}
+
+.chartContainer {
+  height: 250px;
+}
+
+@media (max-width: 1200px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .statsGrid, .chartsGrid {
+    grid-template-columns: 1fr;
+  }
+}
