@@ -4,9 +4,7 @@ import styles from './CodePadPage.module.css';
 import { RiCodeLine, RiPlayLine, RiTerminalBoxLine, RiFileList3Line } from 'react-icons/ri';
 
 // --- UPDATED LANGUAGES ARRAY ---
-// We use 'value' for Monaco and Piston's 'language' field.
-// We use 'version' for Piston's 'version' field.
-// The 'apiId' field (for Judge0) has been removed.
+// Based on the Piston API /runtimes endpoint data
 const languages = [
   { 
     name: 'Python', 
@@ -22,8 +20,8 @@ const languages = [
   },
   { 
     name: 'C++', 
-    value: 'cpp', // <--- CHANGED: This is for Monaco syntax highlighting
-    pistonLang: 'c++', // <--- ADDED: This is for the Piston API
+    value: 'cpp', // <--- This is for Monaco syntax highlighting
+    pistonLang: 'c++', // <--- This is for the Piston API
     version: '10.2.0', 
     defaultCode: `#include <iostream>\n\nint main() {\n    std::cout << "Hello, World!";\n    return 0;\n}` 
   },
@@ -106,7 +104,7 @@ const CodePadPage = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        // --- CHANGE: Send 'language' and 'version' instead of 'languageId' ---
+        // --- CHANGE: Send 'language' and 'version' ---
        body: JSON.stringify({
           // This logic checks for the new field first
           language: (language as any).pistonLang || language.value,
