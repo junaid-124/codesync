@@ -1,27 +1,78 @@
 import React, { useState } from 'react';
 import Editor from '@monaco-editor/react';
 import styles from './CodePadPage.module.css';
-// --- CHANGE: Removed RiUpload2Line and RiShareLine ---
 import { RiCodeLine, RiPlayLine, RiTerminalBoxLine, RiFileList3Line } from 'react-icons/ri';
 
 // --- UPDATED LANGUAGES ARRAY ---
-// We add 'apiId' for Judge0 and 'value' for the Monaco Editor
+// We use 'value' for Monaco and Piston's 'language' field.
+// We use 'version' for Piston's 'version' field.
+// The 'apiId' field (for Judge0) has been removed.
 const languages = [
-  { name: 'Python', value: 'python', version: '3.10.0', apiId: 71, defaultCode: `print("Hello, World!")` },
-  { name: 'JavaScript (Node)', value: 'javascript', version: '18.15.0', apiId: 93, defaultCode: `console.log("Hello, World!");` },
-  { name: 'C++', value: 'cpp', version: 'GCC 11.1.0', apiId: 54, defaultCode: `#include <iostream>\n\nint main() {\n    std::cout << "Hello, World!";\n    return 0;\n}` },
-  { name: 'Java', value: 'java', version: '15.0.2', apiId: 62, defaultCode: `public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello, World!");\n    }\n}` },
-  { name: 'C#', value: 'csharp', version: '6.12.0', apiId: 51, defaultCode: `using System;\n\npublic class Program {\n    public static void Main() {\n        Console.WriteLine("Hello, World!");\n    }\n}` },
-  { name: 'Go', value: 'go', version: '1.16.2', apiId: 60, defaultCode: `package main\nimport "fmt"\n\nfunc main() {\n    fmt.Println("Hello, World!")\n}` },
-  { name: 'Rust', value: 'rust', version: '1.55.0', apiId: 73, defaultCode: `fn main() {\n    println!("Hello, World!");\n}` },
-  { name: 'PHP', value: 'php', version: '8.0.0', apiId: 68, defaultCode: `<?php\n\necho "Hello, World!";\n` },
-  { name: 'Ruby', value: 'ruby', version: '3.0.1', apiId: 72, defaultCode: `puts "Hello, World!"` },
-  { name: 'Swift', value: 'swift', version: '5.3.1', apiId: 83, defaultCode: `print("Hello, World!")` },
+  { 
+    name: 'Python', 
+    value: 'python', 
+    version: '3.10.0', // From your list
+    defaultCode: `print("Hello, World!")` 
+  },
+  { 
+    name: 'JavaScript (Node)', 
+    value: 'javascript', 
+    version: '18.15.0', // From your list (runtime: node)
+    defaultCode: `console.log("Hello, World!");` 
+  },
+  { 
+    name: 'C++', 
+    value: 'cpp', // <--- CHANGED: This is for Monaco syntax highlighting
+    pistonLang: 'c++', // <--- ADDED: This is for the Piston API
+    version: '10.2.0', 
+    defaultCode: `#include <iostream>\n\nint main() {\n    std::cout << "Hello, World!";\n    return 0;\n}` 
+  },
+  { 
+    name: 'Java', 
+    value: 'java', 
+    version: '15.0.2', // From your list
+    defaultCode: `public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello, World!");\n    }\n}` 
+  },
+  { 
+    name: 'C# (Mono)', 
+    value: 'csharp', 
+    version: '6.12.0', // From your list (runtime: mono)
+    defaultCode: `using System;\n\npublic class Program {\n    public static void Main() {\n        Console.WriteLine("Hello, World!");\n    }\n}` 
+  },
+  { 
+    name: 'Go', 
+    value: 'go', 
+    version: '1.16.2', // From your list
+    defaultCode: `package main\nimport "fmt"\n\nfunc main() {\n    fmt.Println("Hello, World!")\n}` 
+  },
+  { 
+    name: 'Rust', 
+    value: 'rust', 
+    version: '1.68.2', // UPDATED from your list
+    defaultCode: `fn main() {\n    println!("Hello, World!");\n}` 
+  },
+  { 
+    name: 'PHP', 
+    value: 'php', 
+    version: '8.2.3', // From your list
+    defaultCode: `<?php\n\necho "Hello, World!";\n` 
+  },
+  { 
+    name: 'Ruby', 
+    value: 'ruby', 
+    version: '3.0.1', // From your list
+    defaultCode: `puts "Hello, World!"` 
+  },
+  { 
+    name: 'Swift', 
+    value: 'swift', 
+    version: '5.3.3', // UPDATED from your list
+    defaultCode: `print("Hello,World!")` // Note: Swift 5.3 needs no space
+  },
   { 
     name: 'C', 
-    value: 'c', // Monaco editor language
-    version: 'GCC 9.2.0', 
-    apiId: 50, // The Judge0 API ID
+    value: 'c', 
+    version: '10.2.0', // From your list (runtime: gcc)
     defaultCode: `#include <stdio.h>\n\nint main() {\n    printf("Hello, World!");\n    return 0;\n}` 
   },
 ];
@@ -43,7 +94,7 @@ const CodePadPage = () => {
     }
   };
 
-  // --- UPDATED API CALL ---
+  // --- UPDATED API CALL FOR PISTON ---
   const handleRunCode = async () => {
     setIsLoading(true);
     setOutput('');
@@ -55,8 +106,11 @@ const CodePadPage = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          languageId: language.apiId,
+        // --- CHANGE: Send 'language' and 'version' instead of 'languageId' ---
+       body: JSON.stringify({
+          // This logic checks for the new field first
+          language: (language as any).pistonLang || language.value,
+          version: language.version,
           code: code,
           input: input,
         }),
@@ -67,34 +121,30 @@ const CodePadPage = () => {
         throw new Error(errData.error || 'Failed to run code');
       }
 
+      // --- CHANGE: Parse the Piston API response structure ---
       const result = await response.json();
+      // The result object now looks like: { run: {...}, compile: {...} }
 
-      if (result.status?.id > 2) { // 1=Queued, 2=Processing. >2 is an error/result.
-        let fullOutput = '';
-        
-        // Handle compile errors
-        if (result.compile_output) {
-          fullOutput += `[Compile Error]:\n${result.compile_output}\n\n`;
-          setError(fullOutput);
-        } 
-        // Handle runtime errors
-        else if (result.stderr) {
-          fullOutput += `[Runtime Error]:\n${result.stderr}\n`;
-          setError(fullOutput);
-        }
-        // Handle "message" (e.g., Time Limit Exceeded)
-          else if (result.message) {
-          fullOutput += `[Execution Message]:\n${result.message}\n`;
-          setError(fullOutput);
-        }
-        // Handle successful output
-          else {
-          fullOutput = result.stdout || '';
-          setOutput(fullOutput);
-        }
-      } else {
-        // This shouldn't happen with wait=true, but good to handle
-        setOutput('Execution is still processing...');
+      let fullOutput = '';
+
+      // 1. Check for compilation errors
+      if (result.compile && result.compile.stderr) {
+        fullOutput += `[Compile Error]:\n${result.compile.stderr}`;
+        setError(fullOutput);
+      } 
+      // 2. Check for runtime errors
+      else if (result.run && result.run.stderr) {
+        fullOutput += `[Runtime Error]:\n${result.run.stderr}`;
+        setError(fullOutput);
+      } 
+      // 3. Check for successful output
+      else if (result.run && result.run.stdout !== undefined) {
+        fullOutput = result.run.stdout;
+        setOutput(fullOutput);
+      } 
+      // 4. Handle cases with no output
+      else {
+        setOutput('Execution finished with no output.');
       }
 
     } catch (err) {
@@ -105,6 +155,7 @@ const CodePadPage = () => {
   };
   // --- END OF UPDATED API CALL ---
   
+  // --- No changes needed in the JSX below ---
   return (
     <div className={styles.pageContainer}>
       <div className={styles.header}>
@@ -119,7 +170,6 @@ const CodePadPage = () => {
               <RiCodeLine />
               <span>Code Editor</span>
             </div>
-            {/* --- CHANGE: Run button moved here, other icons removed --- */}
             <div className={styles.headerRight}>
               <button 
                 onClick={handleRunCode} 
@@ -136,7 +186,6 @@ const CodePadPage = () => {
               </select>
               <span className={styles.versionTag}>{language.version}</span>
             </div>
-            {/* --- END OF CHANGE --- */}
           </div>
           <div className={styles.editorContainer}>
             <Editor
@@ -148,7 +197,6 @@ const CodePadPage = () => {
               options={{ fontSize: 16, minimap: { enabled: false } }}
             />
           </div>
-          {/* --- CHANGE: The entire panelFooter div has been removed --- */}
         </div>
 
         <div className={styles.ioPanel}>

@@ -5,57 +5,50 @@ const router = express.Router();
 
 /**
  * @route POST /execute
- * @desc Runs code using Judge0 API
+ * @desc Runs code using Piston API
  * (Full path will be /api/execute)
  */
 router.post('/execute', async (req, res) => {
-  const { languageId, code, input } = req.body;
+  // --- CHANGE: Destructure language, version, code, input ---
+  const { language, version, code, input } = req.body;
 
-  if (!languageId || code === undefined) {
-    return res.status(400).json({ error: 'Missing languageId or code.' });
+  // --- CHANGE: Validate new fields ---
+  if (!language || !version || code === undefined) {
+    return res.status(400).json({ error: 'Missing language, version, or code.' });
   }
 
-  // Encode for safe transmission
-  const encodedCode = btoa(code);
-  const encodedInput = btoa(input);
-
+  // --- CHANGE: Set up Piston API options ---
   const options = {
     method: 'POST',
-    url: 'https://judge0-ce.p.rapidapi.com/submissions',
-    params: {
-      base64_encoded: 'true',
-      wait: 'true',
-      fields: '*'
-    },
+    url: 'https://emkc.org/api/v2/piston/execute',
     headers: {
       'content-type': 'application/json',
-      'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
-      'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
     },
+    // --- CHANGE: Piston API data structure ---
     data: {
-      language_id: languageId,
-      source_code: encodedCode,
-      stdin: encodedInput
+      language: language,
+      version: version,
+      files: [
+        {
+          // The name is not critical for simple execution
+          name: "main", 
+          content: code,
+        }
+      ],
+      stdin: input || '' // Ensure stdin is a string
     }
   };
 
   try {
     const response = await axios.request(options);
-    const data = response.data;
-
-    const output = {
-      stdout: data.stdout ? atob(data.stdout) : null,
-      stderr: data.stderr ? atob(data.stderr) : null,
-      compile_output: data.compile_output ? atob(data.compile_output) : null,
-      message: data.message ? atob(data.message) : null,
-      status: data.status,
-    };
-
-    console.log('Execution successful:', output.status.description);
-    res.json(output);
+    
+    // --- CHANGE: Send the raw Piston response back to the frontend ---
+    // The frontend will handle parsing the `run` and `compile` objects
+    console.log('Execution successful');
+    res.json(response.data);
 
   } catch (error) {
-    console.error('Error calling Judge0 API:', error.response?.data || error.message);
+    console.error('Error calling Piston API:', error.response?.data || error.message);
     res.status(500).json({ error: 'Failed to execute code.', details: error.message });
   }
 });
