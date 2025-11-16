@@ -1,0 +1,75 @@
+.statsBlock {
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  overflow: hidden; /* Crucial for hiding content during collapse */
+  margin-top: 1rem;
+  
+  /* --- NEW: Default to collapsed state for animation --- */
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.4s ease-out, opacity 0.4s ease-out; /* Smooth transition */
+}
+
+/* --- NEW: Class to apply when stats are visible --- */
+.statsBlock.expanded {
+  max-height: 500px; /* A large enough value to accommodate all content */
+  opacity: 1;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #161b22;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #30363d;
+}
+
+.headerTitle {
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--platform-color); /* Uses color from props */
+  font-size: 0.9rem;
+}
+
+.headerDate {
+  font-size: 0.8rem;
+  color: #8b949e;
+}
+
+.statsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.statRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: #161b22;
+}
+
+.statRow:not(:last-child) {
+  border-bottom: 1px solid #30363d;
+}
+
+.statLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #c9d1d9;
+}
+
+.statDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  /* Background color is set inline */
+}
+
+.statValue {
+  font-weight: 600;
+  /* Color is set inline */
+}
