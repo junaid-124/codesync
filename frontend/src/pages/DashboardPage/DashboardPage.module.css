@@ -2,10 +2,6 @@
   color: #c9d1d9;
 }
 
-/* The .loading class is no longer used by the component,
-  so it can be safely removed.
-*/
-
 .header {
   margin-bottom: 2rem;
 }
@@ -16,19 +12,18 @@
 }
 
 .headerText h1 {
-  font-size: 2.5rem; /* Made title bigger */
-font-weight: 700;
-color: #5B72F6; /* Bright blue from your image */
-color: rgb(91, 114, 246); /* Same color in RGB */
-margin: 0 0 0.5rem;
-
+  font-size: 2rem; /* Reduced from 2.25rem */
+  font-weight: 700;
+  color: #5B72F6;
+  color: rgb(91, 114, 246);
+  margin: 0 0 0.5rem;
 }
 /* ------------------------------------------ */
 
 .headerText p {
   color: #8b949e;
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 0.9rem; /* Reduced from 1rem */
 }
 
 /* This is the style that creates the side-by-side grid */
@@ -41,6 +36,6 @@ margin: 0 0 0.5rem;
 
 @media (max-width: 768px) {
   .headerText h1 {
-    font-size: 1.75rem; /* Adjusted for new, larger title */
+    font-size: 1.5rem; /* Reduced from 1.6rem */
   }
 }

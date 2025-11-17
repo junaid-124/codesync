@@ -1,13 +1,14 @@
 import {
   SiLeetcode,
   SiCodechef,
-  SiCodeforces,
+  // SiCodeforces, // <-- Removed this
   SiGeeksforgeeks,
   SiHackerrank,
   SiCodingninjas,
-  SiGithub, // <-- ADD THIS
+  SiGithub,
 } from 'react-icons/si';
-import { RiCodeBoxFill } from 'react-icons/ri'; // Fallback for AtCoder
+// --- ADD RiBarChartFill HERE ---
+import { RiCodeBoxFill, RiBarChartFill } from 'react-icons/ri'; 
 
 export interface Platform {
   id: string;
@@ -32,7 +33,7 @@ export const platformData: Platform[] = [
   {
     id: 'codeforces',
     name: 'Codeforces',
-    icon: SiCodeforces,
+    icon: RiBarChartFill, // <-- THIS IS THE FIX
     color: '#3B82F6',
   },
   {
@@ -59,12 +60,10 @@ export const platformData: Platform[] = [
     icon: SiCodingninjas,
     color: '#8B5CF6',
   },
-  // --- ADD THIS NEW OBJECT ---
   {
     id: 'github',
     name: 'GitHub',
     icon: SiGithub,
-    color: '#8b949e', // GitHub Gray from your image
+    color: '#8b949e',
   },
-  // ---------------------------
 ];
