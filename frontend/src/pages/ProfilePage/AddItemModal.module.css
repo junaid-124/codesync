@@ -1,0 +1,266 @@
+/* --- Variables --- */
+:root {
+  --container-bg: #16171B; 
+  --border-color: #2A2E35; 
+  --text-main: #e6edf3;
+  --text-muted: #8b949e;
+  --accent-blue: #0095f6;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modalContainer {
+  background-color: var(--container-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  width: 500px;
+  max-width: 95%;
+  
+  /* --- UPDATED: Tighter Padding & Gap --- */
+  padding: 1.25rem; 
+  gap: 1rem;
+  /* ------------------------------------- */
+
+  color: var(--text-main);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  max-height: 95vh; /* Allow it to be slightly taller on screen if needed to avoid scroll */
+  overflow-y: auto;
+}
+
+/* Custom Scrollbar for Modal */
+.modalContainer::-webkit-scrollbar { width: 6px; }
+.modalContainer::-webkit-scrollbar-thumb { background: #2A2E35; border-radius: 3px; }
+
+.header h2 {
+  margin: 0;
+  font-size: 1.3rem; /* Slightly smaller title */
+  font-weight: 600;
+  color: #fff;
+}
+
+.formContent {
+  display: flex;
+  flex-direction: column;
+  /* --- UPDATED: Reduced vertical space between inputs --- */
+  gap: 1.1rem; 
+}
+
+/* --- Floating Label Logic --- */
+.inputGroup {
+  position: relative;
+}
+
+.floatingLabel {
+  position: absolute;
+  top: -9px; 
+  left: 12px;
+  background-color: var(--container-bg); 
+  padding: 0 6px;
+  font-size: 0.8rem; /* Slightly smaller label */
+  color: var(--text-muted);
+  font-weight: 500;
+  pointer-events: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+/* Active label color */
+.activeLabel {
+  color: var(--text-muted); 
+}
+
+.activeBorder {
+  border-color: var(--accent-blue) !important;
+}
+
+/* --- Inputs, Textarea, & Date --- */
+.inputField,
+.textareaField,
+.customSelect,
+.tagContainer {
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  
+  /* --- UPDATED: Reduced Input Padding --- */
+  padding: 0.75rem 1rem; 
+  
+  color: var(--text-main);
+  font-size: 0.95rem; /* Slightly smaller text */
+  outline: none;
+  box-sizing: border-box;
+}
+
+/* Special Styling for Date Inputs to handle Calendar Icon */
+input[type="date"] {
+  color-scheme: dark; 
+  font-family: inherit;
+}
+
+.inputField:focus,
+.textareaField:focus,
+.tagContainer:focus-within {
+  border-color: var(--accent-blue);
+}
+
+/* Change label color on focus */
+.inputField:focus + .floatingLabel,
+.textareaField:focus + .floatingLabel,
+.tagContainer:focus-within + .floatingLabel {
+  color: var(--accent-blue);
+}
+
+.textareaField {
+  /* --- UPDATED: Reduced minimum height --- */
+  min-height: 100px; 
+  resize: vertical;
+  font-family: inherit;
+}
+
+/* --- Date Row --- */
+.dateRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem; /* Reduced gap */
+}
+
+/* --- Custom Dropdown --- */
+.customSelect {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.arrowIcon {
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.dropdownList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #111316; 
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  margin-top: 4px;
+  padding: 0;
+  list-style: none;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.dropdownList li {
+  padding: 0.7rem 1rem; /* Reduced padding */
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: background 0.2s;
+  font-size: 0.95rem;
+}
+
+.dropdownList li:hover,
+.dropdownList li.selectedItem {
+  background-color: rgba(0, 149, 246, 0.1);
+  color: #fff;
+}
+
+/* --- Helper Text --- */
+.helperText {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+  margin-left: 4px;
+}
+
+/* --- Tags --- */
+.tagContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+
+.tagChip {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 1px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.removeTagIcon {
+  cursor: pointer;
+  color: var(--text-muted);
+}
+.removeTagIcon:hover {
+  color: #fff;
+}
+
+.tagInput {
+  border: none;
+  background: transparent;
+  color: #fff;
+  flex: 1;
+  min-width: 100px;
+  outline: none;
+  font-size: 0.95rem;
+  padding: 0;
+}
+
+/* --- Footer Buttons --- */
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 0.5rem; /* Reduced margin */
+}
+
+.cancelBtn {
+  background: transparent;
+  border: none;
+  color: var(--accent-blue);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.6rem 1.2rem;
+}
+
+.cancelBtn:hover {
+  color: #3aaeff;
+}
+
+.createBtn {
+  background-color: var(--accent-blue);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.createBtn:hover {
+  background-color: #0077b6;
+}

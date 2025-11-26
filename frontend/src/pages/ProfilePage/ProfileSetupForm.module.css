@@ -1,0 +1,467 @@
+/* ================================
+    Core Layout & Theme Variables
+================================ */
+:root {
+  --bg-color: #0C0E12;
+  --container-bg: #16171B; 
+  --inner-card-bg: #15171b;
+  --border-color: #2A2E35; 
+  --text-main: #e6edf3;
+  --text-muted: #8b949e;
+  --accent-blue: #0095f6;
+  --success-green: #38c172;
+}
+
+/* ================================
+    Modal Overlay & Container
+================================ */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContainer {
+  background-color: var(--container-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  width: 900px; 
+  max-width: 95%;
+  max-height: 85vh; /* Scrollable height */
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem;
+  color: var(--text-main);
+  overflow-y: auto; 
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* Custom Scrollbar */
+.modalContainer::-webkit-scrollbar {
+  width: 8px;
+}
+.modalContainer::-webkit-scrollbar-track {
+  background: var(--container-bg);
+  border-radius: 4px;
+}
+.modalContainer::-webkit-scrollbar-thumb {
+  background: #2A2E35; 
+  border-radius: 4px;
+}
+.modalContainer::-webkit-scrollbar-thumb:hover {
+  background: #3a4049; 
+}
+
+/* ================================
+    Header
+================================ */
+.header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.5rem 0;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ================================
+    Main Layout Grid
+================================ */
+.contentGrid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* ================================
+    Sidebar Navigation
+================================ */
+.sidebar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px; 
+}
+
+/* Vertical Line connecting dots */
+.sidebar::before {
+  content: '';
+  position: absolute;
+  top: 15px; 
+  left: 23px; 
+  width: 2px;
+  height: calc(100% - 40px); 
+  background-color: #2A2E35;
+  z-index: 0;
+}
+
+.stepItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 1rem 0; 
+  cursor: default; /* Not clickable */
+  z-index: 1; 
+  user-select: none;
+}
+
+.stepIndicator {
+  width: 28px;
+  height: 28px;
+  margin-right: 12px;
+  background-color: var(--container-bg); /* Mask the line behind circle */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepCircle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background-color: #2A2E35; /* Inactive Grey Background */
+  color: var(--text-muted); /* Grey number */
+  transition: all 0.2s;
+}
+
+.stepName {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-muted); /* Default Grey Text */
+  transition: color 0.2s;
+}
+
+/* Active State */
+.stepItem.active .stepCircle {
+  background-color: var(--accent-blue);
+  color: #fff;
+}
+.stepItem.active .stepName {
+  color: var(--accent-blue); /* Blue Text */
+  font-weight: 600;
+}
+
+/* Done State */
+.stepItem.done .stepCircle {
+  background-color: var(--accent-blue);
+  color: #fff;
+}
+.stepItem.done .stepName {
+  color: #fff; /* White Text */
+}
+
+/* ================================
+    Form Content
+================================ */
+.formContent {
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+}
+
+.formSection {
+  animation: fadeIn 0.3s ease;
+}
+
+.descText {
+  color: var(--text-main);
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.infoText {
+  color: #3b82f6; 
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.successMessage {
+  background-color: rgba(16, 185, 129, 0.1);
+  border: 1px solid #10B981;
+  color: #fff;
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+.successIconWrapper {
+  color: #10B981; 
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+}
+
+/* ================================
+    Inputs
+================================ */
+.inputGroupGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.inputContainer label {
+  font-size: 0.85rem;
+  color: #9CA3AF; 
+}
+
+.inputContainer small {
+  font-size: 0.75rem;
+  color: #6B7280;
+}
+
+.inputContainer input,
+.inputContainer select,
+.inputContainer textarea {
+  background-color: #000000; 
+  border: 1px solid #333;
+  padding: 0.75rem;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.inputContainer input:focus,
+.inputContainer select:focus,
+.inputContainer textarea:focus {
+  border-color: var(--accent-blue);
+}
+
+.iconInputWrapper {
+  position: relative;
+}
+
+.iconInputWrapper input {
+  padding-left: 2.5rem; 
+}
+
+.inputIcon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+/* ================================
+    Tags & Skills (FIXED)
+================================ */
+.tagInputContainer {
+  background-color: #000000;
+  border: 1px solid #333;
+  padding: 0.5rem;
+  border-radius: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  min-height: 46px;
+  position: relative;
+}
+
+.tagChip {
+  background-color: #112233; 
+  border: 1px solid #1F3A52;
+  color: var(--accent-blue);
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.removeTagIcon {
+  color: #6B7280;
+  cursor: pointer;
+}
+.removeTagIcon:hover { color: #fff; }
+
+/* UPDATED: Increased min-width to prevent placeholder cutoff */
+.tagInput {
+  background: transparent !important;
+  border: none !important;
+  flex: 1;
+  min-width: 220px; /* Allows long placeholder text to force a new line if needed */
+  padding: 0.25rem !important;
+  color: #fff !important;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.tagInput::placeholder {
+  color: #6B7280;
+}
+
+/* Suggestions Dropdown */
+.suggestionsDropdown {
+  position: absolute;
+  top: 105%;
+  left: 0;
+  width: 100%;
+  background-color: #1F2937;
+  border: 1px solid #374151;
+  border-radius: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.suggestionItem {
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #D1D5DB;
+}
+
+.suggestionItem:hover {
+  background-color: var(--accent-blue);
+  color: white;
+}
+
+/* --- ABOUT SECTION (Exact floating label on border) --- */
+.aboutContainer {
+  position: relative;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-top: 0.5rem;
+}
+
+.aboutLabel {
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  background-color: var(--container-bg); /* Matches modal bg to hide border */
+  padding: 0 6px;
+  color: #9CA3AF; /* Grey label color */
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.aboutTextarea {
+  width: 100%;
+  background: transparent !important;
+  border: none !important;
+  color: #e6edf3 !important;
+  font-size: 1rem !important;
+  line-height: 1.5;
+  resize: none;
+  outline: none !important;
+  height: 100px;
+  padding: 0 !important;
+}
+
+/* Custom Scrollbar for About Textarea */
+.aboutTextarea::-webkit-scrollbar {
+  width: 6px;
+}
+.aboutTextarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+.aboutTextarea::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+
+/* --- Buttons --- */
+.actionButtons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+}
+
+.continueBtn, .completeBtn {
+  background-color: var(--accent-blue);
+  color: white;
+  border: none;
+  padding: 0.65rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.continueBtn:hover, .completeBtn:hover {
+  background-color: #0077b6;
+}
+
+.backBtn {
+  background: transparent;
+  color: #9CA3AF;
+  border: none;
+  padding: 0.65rem 1.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.backBtn:hover {
+  color: #fff;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    flex-direction: row;
+    overflow-x: auto;
+    border-bottom: 1px solid #333;
+    padding-bottom: 1rem;
+    padding-left: 0;
+  }
+  .sidebar::before { display: none; }
+  .stepItem { padding: 0.5rem 1rem; }
+  .stepIndicator { margin-right: 8px; }
+}

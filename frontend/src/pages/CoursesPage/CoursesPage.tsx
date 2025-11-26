@@ -1,73 +1,122 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import styles from './CoursesPage.module.css';
-import { RiSearchLine } from 'react-icons/ri';
+import { RiSearchLine, RiTimeLine, RiUser3Fill, RiArrowRightLine } from 'react-icons/ri';
 
-const coursesData = [
-  { title: 'Data Structures & Algorithms', description: 'Master the fundamentals of DSA for interviews and competitive programming.', difficulty: 'Beginner', lessons: 42 },
-  { title: 'Dynamic Programming Mastery', description: 'A deep dive into DP concepts with step-by-step examples and problems.', difficulty: 'Intermediate', lessons: 28 },
-  { title: 'Graph Theory Algorithms', description: 'Explore BFS, DFS, Dijkstra, and other essential graph techniques.', difficulty: 'Intermediate', lessons: 35 },
-  { title: 'Advanced Algorithms', description: 'Tackle complex topics like segment trees, FFT, and advanced string algorithms.', difficulty: 'Advanced', lessons: 18 },
-  { title: 'Number Theory & Math', description: 'Learn the mathematical concepts crucial for solving complex CP problems.', difficulty: 'Advanced', lessons: 22 },
-  { title: 'System Design Fundamentals', description: 'An introduction to designing scalable systems for technical interviews.', difficulty: 'Beginner', lessons: 30 },
+// 1. Define the interface for the Course object
+interface Course {
+  id: number;
+  title: string;
+  description: string;
+  difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
+  category: string;
+  duration: string;
+  image: string;
+}
+
+// 2. Typed Data Array
+const coursesData: Course[] = [
+  { 
+    id: 1,
+    title: 'Introduction to Data Science', 
+    description: 'Quintillion bytes of data are created EVERY day! Explore how data is transforming the world.', 
+    difficulty: 'Beginner', 
+    category: 'Data Science',
+    duration: '4 Weeks',
+    image: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+  },
+  { 
+    id: 2,
+    title: 'Networking Essentials', 
+    description: 'Networks keep the digital world connected. Learn how networks work and gain employable skills.', 
+    difficulty: 'Beginner', 
+    category: 'Networking',
+    duration: '4 Weeks',
+    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+  }
 ];
 
-const CoursesPage = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [difficultyFilter, setDifficultyFilter] = useState('All');
+const TABS: string[] = ['All Courses', 'Algorithms', 'Data Structures', 'Competitive', 'Problem Solving'];
 
-  const filteredCourses = useMemo(() => {
-    return coursesData.filter(course => {
-      const difficultyMatch = difficultyFilter === 'All' || course.difficulty === difficultyFilter;
-      const searchMatch = course.title.toLowerCase().includes(searchTerm.toLowerCase());
-      return difficultyMatch && searchMatch;
-    });
-  }, [searchTerm, difficultyFilter]);
+const CoursesPage: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [activeTab, setActiveTab] = useState<string>('All Courses');
+
+  const filteredCourses = coursesData.filter((course) => 
+    course.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className={styles.pageContainer}>
-      <header className={styles.header}>
-        <h1>Courses & Learning Paths</h1>
-        <p>Sharpen your skills with our curated collection of courses and resources.</p>
-      </header>
+      <div className={styles.contentWrapper}>
+        {/* Header */}
+        <header className={styles.header}>
+          <h1 className={styles.pageTitle}>Programming Courses</h1>
+          <p className={styles.pageSubtitle}>Enhance your competitive programming skills with our expert-led courses</p>
+        </header>
 
-      <div className={styles.controlsBar}>
-        <div className={styles.searchInput}>
-          <RiSearchLine />
-          <input 
-            type="text" 
-            placeholder="Search courses..." 
-            value={searchTerm}
-            onChange={e => setSearchTerm(e.target.value)}
-          />
+        {/* Search Bar */}
+        <div className={styles.searchContainer}>
+          <div className={styles.searchInputWrapper}>
+            <RiSearchLine className={styles.searchIcon} />
+            <input 
+              type="text" 
+              placeholder="Search courses..." 
+              value={searchTerm}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
+            />
+          </div>
         </div>
-        <select value={difficultyFilter} onChange={e => setDifficultyFilter(e.target.value)} className={styles.filterSelect}>
-          <option value="All">All Difficulties</option>
-          <option value="Beginner">Beginner</option>
-          <option value="Intermediate">Intermediate</option>
-          <option value="Advanced">Advanced</option>
-        </select>
-      </div>
 
-      <div className={styles.coursesGrid}>
-        {filteredCourses.length > 0 ? (
-          filteredCourses.map((course, index) => (
-            <div key={index} className={styles.courseCard}>
-              <div className={styles.cardContent}>
-                <span className={`${styles.difficultyTag} ${styles[course.difficulty.toLowerCase()]}`}>
+        {/* Navigation Tabs */}
+        <div className={styles.tabsContainer}>
+          {TABS.map((tab) => (
+            <button 
+              key={tab} 
+              className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ''}`}
+              onClick={() => setActiveTab(tab)}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        {/* Grid */}
+        <div className={styles.grid}>
+          {filteredCourses.map((course) => (
+            <div key={course.id} className={styles.card}>
+              
+              {/* Image Area */}
+              <div className={styles.cardImageWrapper}>
+                <img src={course.image} alt={course.title} className={styles.cardImage} />
+                <span className={`${styles.badge} ${styles[course.difficulty.toLowerCase()]}`}>
                   {course.difficulty}
                 </span>
-                <h3>{course.title}</h3>
-                <p>{course.description}</p>
+                <div className={styles.imageOverlay}></div>
               </div>
-              <div className={styles.cardFooter}>
-                <span>{course.lessons} Lessons</span>
-                <button className={styles.ctaButton}>Start Learning</button>
+
+              {/* Content Area */}
+              <div className={styles.cardBody}>
+                <h3 className={styles.cardTitle}>{course.title}</h3>
+                
+                <div className={styles.iconRow}>
+                  <div className={styles.userIconCircle}>
+                    <RiUser3Fill />
+                  </div>
+                </div>
+
+                <p className={styles.cardDesc}>{course.description}</p>
+                
+                <div className={styles.durationBox}>
+                  <RiTimeLine /> {course.duration}
+                </div>
+
+                <button className={styles.actionButton}>
+                  View Course <RiArrowRightLine />
+                </button>
               </div>
             </div>
-          ))
-        ) : (
-          <div className={styles.noResults}>No courses found. Try adjusting your filters.</div>
-        )}
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -1,92 +1,274 @@
+/* --- Main Container --- */
 .pageContainer {
-  color: #c9d1d9;
+  background-color: transparent; 
+  width: 100%;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  padding: 3rem 0;
 }
+
+.contentWrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* --- Header --- */
 .header {
-  margin-bottom: 2rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
 }
-.header h1 {
-  font-size: 2.5rem;
+
+.pageTitle {
+  font-size: 2.75rem;
   font-weight: 700;
-  color: #fff;
-  margin: 0 0 0.5rem 0;
+  /* UPDATED: Your requested color */
+  color: #5865F2; 
+  margin: 0 0 0.75rem 0;
 }
-.header p {
-  font-size: 1.1rem;
+
+.pageSubtitle {
   color: #8b949e;
+  font-size: 1.1rem;
   margin: 0;
 }
-.controlsBar {
+
+/* --- Search Bar --- */
+.searchContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.searchInputWrapper {
+  background-color: rgba(255, 255, 255, 0.05); 
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 0.85rem 1.2rem;
+  width: 100%;
+  max-width: 720px; 
+  display: flex;
   align-items: center;
-  margin-bottom: 2.5rem;
   gap: 1rem;
+  transition: border-color 0.2s, background-color 0.2s;
 }
-.searchInput {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  background-color: #161b22;
-  border: 1px solid #30363d;
-  border-radius: 8px;
-  padding: 0.75rem 1rem;
-  flex-grow: 1;
+
+.searchInputWrapper:focus-within {
+  /* UPDATED: Border color on focus */
+  border-color: #5865F2; 
+  background-color: rgba(88, 101, 242, 0.05);
 }
-.searchInput svg { color: #8b949e; }
-.searchInput input { background: none; border: none; color: #c9d1d9; font-size: 1rem; width: 100%; }
-.searchInput input:focus { outline: none; }
-.filterSelect {
-  background-color: #161b22;
-  border: 1px solid #30363d;
-  color: #c9d1d9;
-  border-radius: 8px;
-  padding: 0.75rem 1rem;
+
+.searchIcon {
+  color: #8b949e;
+  font-size: 1.25rem;
+}
+
+.searchInputWrapper input {
+  background: transparent;
+  border: none;
+  color: #e6edf3;
   font-size: 1rem;
+  width: 100%;
 }
-.coursesGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+
+.searchInputWrapper input:focus { outline: none; }
+
+/* --- Navigation Tabs --- */
+.tabsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-bottom: 3.5rem;
+  position: relative;
 }
-.courseCard {
-  background-color: #161b22;
+
+.tabsContainer::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 720px; 
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+  z-index: 0;
+}
+
+.tab {
+  background: none;
+  border: none;
+  color: #8b949e;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.75rem 0;
+  position: relative;
+  z-index: 1;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.tab:hover { color: #e6edf3; }
+
+.activeTab { 
+  /* UPDATED: Active tab text color */
+  color: #5865F2; 
+}
+
+.activeTab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  /* UPDATED: Underline color */
+  background-color: #5865F2; 
+  box-shadow: 0 0 10px rgba(88, 101, 242, 0.4);
+}
+
+/* --- Grid Layout --- */
+.grid {
+  display: flex;           
+  justify-content: center; 
+  flex-wrap: wrap;
+  gap: 2.5rem; 
+}
+
+/* --- Card Design --- */
+.card {
+  background-color: #0d1117;
   border: 1px solid #30363d;
-  border-radius: 12px;
+  border-radius: 12px;    
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  width: 100%;
+  max-width: 380px; 
 }
-.courseCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+  /* UPDATED: Card border color on hover */
+  border-color: #5865F2; 
 }
-.cardContent {
-  padding: 1.5rem;
+
+.cardImageWrapper {
+  height: 200px; 
+  position: relative;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(13, 17, 23, 0.9) 100%);
+}
+
+.badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 5px 14px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #000;
+  z-index: 2;
+}
+
+.beginner { background-color: #2ea043; color: white; }
+
+.cardBody {
+  padding: 1.75rem; 
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
 }
-.difficultyTag {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  border-radius: 50px;
-  font-size: 0.8rem;
-  font-weight: 500;
+
+.cardTitle {
+  font-size: 1.4rem; 
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.85rem 0;
+}
+
+.iconRow {
   margin-bottom: 1rem;
-  color: #fff;
 }
-.beginner { background-color: #16A34A; }
-.intermediate { background-color: #D97706; }
-.advanced { background-color: #DC2626; }
-.cardContent h3 {
-  font-size: 1.25rem;
+
+.userIconCircle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  /* UPDATED: Icon background */
+  background-color: rgba(88, 101, 242, 0.15); 
+  border-radius: 50%;
+  /* UPDATED: Icon color */
+  color: #5865F2; 
+  font-size: 1.1rem;
+}
+
+.cardDesc {
+  color: #8b949e;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+  flex-grow: 1;
+}
+
+.durationBox {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  color: #e6edf3;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.actionButton {
+  width: 100%;
+  /* UPDATED: Button background */
+  background-color: #5865F2; 
+  color: #fff;
+  border: none;
+  padding: 0.85rem;
+  border-radius: 8px;
+  font-size: 1rem;
   font-weight: 600;
-  color: #fff;
-  margin: 0 0 0.5rem 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  transition: background-color 0.2s;
 }
-.cardContent p { color: #8b949e; line-height: 1.6; margin: 0; }
-.cardFooter { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; border-top: 1px solid #30363d; }
-.cardFooter span { color: #8b949e; font-size: 0.9rem; }
-.ctaButton { background-color: #007BFF; color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: background-color 0.2s ease; }
-.ctaButton:hover { background-color: #0056b3; }
-.noResults { grid-column: 1 / -1; text-align: center; padding: 4rem; color: #8b949e; background-color: #161b22; border-radius: 12px; }
-@media (max-width: 992px) { .coursesGrid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 768px) { .coursesGrid { grid-template-columns: 1fr; } .controlsBar { flex-direction: column; align-items: stretch; } }
+
+.actionButton:hover {
+  /* UPDATED: Darker shade for hover state */
+  background-color: #4752c4; 
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .grid { flex-direction: column; align-items: center; }
+  .tabsContainer { gap: 1rem; overflow-x: auto; justify-content: flex-start; padding-bottom: 1rem; }
+  .tabsContainer::after { width: 100%; left: 0; transform: none; }
+  .pageTitle { font-size: 2.2rem; }
+  .searchInputWrapper { max-width: 100%; }
+}
