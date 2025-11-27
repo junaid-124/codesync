@@ -1,0 +1,565 @@
+/* StudentProfilePage.module.css */
+
+/* --- LAYOUT & GLOBAL STYLES --- */
+
+:root {
+    --main-bg: #0C0E12;
+    --card-bg: #16171B;
+    --inner-bg: #1b1e22;
+    --text-main: #e6edf3;
+    --text-muted: #8b949e;
+    --accent-blue: #0095f6;
+    --accent-dark-blue: #0084c7; /* For header strip */
+    --accent-gold: #ffc107;
+    --border-color: #2A2E35;
+    --border-radius: 12px;
+    --sidebar-width: 320px;
+}
+
+.container {
+    background-color: var(--main-bg);
+    color: var(--text-main);
+    min-height: 100vh;
+    padding: 30px;
+    font-family: Inter, system-ui, sans-serif;
+}
+
+.profileContentGrid {
+    display: flex;
+    gap: 20px;
+    /* Adjusted width and centering */
+    max-width: 1200px; /* Reduced from 1400px */
+    margin: 20px auto 0;
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    flex-shrink: 0;
+}
+
+.mainContent {
+    flex-grow: 1;
+}
+
+/* --- CARD BASE STYLING --- */
+
+.cardBase {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.mainCard {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    color: var(--text-main);
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #1f2228;
+}
+
+/* --- 1. PROFILE HEADER CARD --- */
+
+.profileHeaderCard {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    position: relative;
+    /* Adjusted width and centering */
+    max-width: 1200px; /* Reduced from 1400px */
+    margin: 0 auto;
+}
+
+/* Gradient Blue Strip at the Top */
+.headerBlueStrip {
+    height: 80px; /* Reduced height */
+    background: linear-gradient(90deg, var(--accent-dark-blue) 0%, var(--accent-blue) 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+}
+
+.headerContent {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px 30px;
+    padding-top: 50px; /* Adjusted to visually match smaller header */
+    padding-bottom: 20px; /* Added to define the bottom edge */
+}
+
+.avatar {
+    width: 120px; /* Reduced size */
+    height: 120px; /* Reduced size */
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid var(--card-bg);
+    box-shadow: 0 0 0 1px var(--border-color), 0 4px 10px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 30px; /* Adjusted to match smaller header height */
+    left: 30px;
+}
+
+.profileInfo {
+    margin-left: 170px; /* Adjusted margin for the new size (120px + 30px padding + margin) */
+    flex-grow: 1;
+}
+
+.profileInfo h2 {
+    font-size: 1.7em;
+    font-weight: 700;
+    margin: 0 0 5px 0;
+    color: var(--text-main);
+}
+
+.profileInfo p {
+    font-size: 0.9em;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.scoreGroup {
+    margin-top: 15px;
+}
+
+.scoreLabel {
+    font-size: 0.8em;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.scoreValue {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: var(--accent-blue);
+    margin: 0;
+}
+
+.socialLinks {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 5px;
+}
+
+.socialIcon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: var(--inner-bg);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.socialIcon:hover {
+    background-color: #2c3038;
+    color: var(--text-main);
+}
+
+/* --- 2. LEFT SIDEBAR SECTIONS --- */
+
+.aboutText {
+    font-style: italic;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Coding Profiles List */
+.codingProfilesList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.profileItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed #1f2228;
+}
+
+.profilePlatform {
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+.profileUsername {
+    color: var(--accent-blue);
+    text-decoration: none;
+}
+
+/* Details Grid */
+.detailsGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.9em;
+}
+
+.detailItem {
+    display: flex;
+    justify-content: space-between;
+}
+
+.detailItem span:first-child {
+    color: var(--text-muted);
+}
+
+.detailValue {
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+/* Tags (Skills/Interests) */
+.tagsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    background-color: var(--inner-bg);
+    color: var(--text-muted);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8em;
+    border: 1px solid #30363d;
+}
+
+/* --- 3. MAIN CONTENT AREA SECTIONS --- */
+
+/* Tabs */
+.tabContainer {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+
+.tabButton {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    padding: 10px 15px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: color 0.2s;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -1px;
+}
+
+.tabButton:hover {
+    color: var(--text-main);
+}
+
+.activeTab {
+    background: none;
+    border: none;
+    color: var(--accent-blue);
+    padding: 10px 15px;
+    font-size: 0.9em;
+    cursor: pointer;
+    font-weight: 600;
+    border-bottom: 3px solid var(--accent-blue);
+    margin-bottom: -1px;
+}
+
+/* Coding Chart Placeholder */
+.codingChartArea {
+    padding: 20px 0;
+}
+
+.overallScoreContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.donutChartPlaceholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+    background-color: var(--inner-bg);
+    border-radius: 50%;
+    position: relative;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.donutRing {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 10px solid #2c3038;
+    border-top-color: var(--accent-blue);
+    border-left-color: var(--accent-gold);
+    border-bottom-color: #1abc9c;
+    border-right-color: #9b59b6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.donutCenter {
+    text-align: center;
+}
+
+.chartScore {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.chartLabel {
+    font-size: 0.9em;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Chart Legend */
+.chartLegend {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.9em;
+}
+
+.legendItem {
+    display: flex;
+    align-items: center;
+    color: var(--text-muted);
+}
+
+.legendDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.platform1 { background-color: var(--accent-blue); }
+.platform2 { background-color: var(--accent-gold); }
+.platform3 { background-color: #1abc9c; }
+.platform4 { background-color: #9b59b6; }
+
+/* GitHub Stats Grid */
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.statBox {
+    background-color: var(--inner-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    text-align: center;
+}
+
+.statValuePrimary {
+    display: block;
+    font-size: 1.6em;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 5px;
+}
+
+.statLabelMuted {
+    display: block;
+    font-size: 0.85em;
+    color: var(--text-muted);
+}
+
+/* Contribution Graph */
+.contributionGraph {
+    background-color: var(--inner-bg);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+.heatmapPlaceholder {
+    display: flex;
+    justify-content: space-between;
+    gap: 2px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.week {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.day {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    background-color: #1f2228;
+}
+
+/* Heatmap Levels */
+.level0 { background-color: #161b22; }
+.level1 { background-color: #0e4429; }
+.level2 { background-color: #006d32; }
+.level3 { background-color: #26a344; }
+.level4 { background-color: #58d86f; }
+
+.contributionFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 0.8em;
+}
+
+.learnMore {
+    color: var(--accent-blue);
+    text-decoration: none;
+}
+
+.legend {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--text-muted);
+}
+
+/* Contribution Streak */
+.contributionStreakGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.streakBox {
+    background-color: var(--inner-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.streakValue {
+    display: block;
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--accent-gold);
+    margin-bottom: 5px;
+}
+
+.streakLabel {
+    display: block;
+    font-size: 0.9em;
+    color: var(--text-muted);
+}
+
+/* Achievements */
+.achievementsContent {
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.noDataFound {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* --- RESPONSIVE DESIGN --- */
+
+@media (max-width: 1100px) {
+    .profileContentGrid {
+        flex-direction: column;
+        margin-top: 20px;
+    }
+    .sidebar {
+        width: 100%;
+        order: 2;
+    }
+    .mainContent {
+        order: 1;
+    }
+    .profileHeaderCard {
+        margin: 0 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 15px;
+    }
+    .profileHeaderCard {
+        margin: 0 15px;
+    }
+    .headerContent {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-bottom: 20px;
+    }
+    .avatar {
+        position: static;
+        margin: -60px 0 20px 0;
+        transform: none;
+    }
+    .profileInfo {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    .scoreGroup {
+        margin-top: 10px;
+    }
+    .socialLinks {
+        margin-top: 20px;
+        justify-content: center;
+    }
+    .statsGrid, .contributionStreakGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .overallScoreContent {
+        flex-direction: column;
+    }
+    .donutChartPlaceholder {
+        margin-bottom: 20px;
+    }
+    .heatmapPlaceholder {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .statsGrid, .contributionStreakGrid {
+        grid-template-columns: 1fr;
+    }
+    .profileHeaderCard {
+        border-radius: 0;
+        margin: 0 -15px;
+    }
+}
